@@ -5,17 +5,10 @@ class InputException extends Exception {
         }
     }
 public class Main {         
-    public static String calc(String input) {  
-        return  calc(input);   
-        }
-public static void main(String[] args) throws InputException {
-        try  (Scanner inputValue =new Scanner(System.in)) {
-        System.out.println("Введите выражение, разделяя каждый символ пробелом. Вводите числа от 1 до 10");
-        String input = inputValue.nextLine();
+    public static String calc(String input) throws InputException {  
         String[] symb = input.split(" ");
         if (symb.length != 3) 
             throw new InputException("Неверный формат выражения");
-
         int num1 =0;
         int num2 = 0;
         try {
@@ -36,25 +29,34 @@ public static void main(String[] args) throws InputException {
         if (oper.equals("+")) {
             int result = num1 + num2;
             String resultStr = Integer.toString(result);
-            System.out.println(resultStr);
+            return resultStr;
         } else if (oper.equals("-")) {
             int result = num1 - num2;
             String resultStr = Integer.toString(result);
-            System.out.println(resultStr);
+            return resultStr;
         } else if (oper.equals("*")) {
             int result = num1*num2;
             String resultStr = Integer.toString(result);
-            System.out.println(resultStr);
+            return resultStr;
         } else if (oper.equals("/")) {
             int result = num1/num2;
             String resultStr = Integer.toString(result);
-            System.out.println(resultStr);
-        }
-         } catch (InputException ms) {
-         System.out.println(ms);
-        }
-       
-        }
+            return resultStr;
+        }      
+        String var = "что-то пошло не так";
+        return var;  
+    } 
+        
+public static void main(String[] args)  {
+          Scanner inputValue =new Scanner(System.in); 
+        System.out.println("Введите выражение, разделяя каждый символ пробелом. Вводите числа от 1 до 10");
+        String input = inputValue.nextLine();
+       try {
+        System.out.println(calc(input));
+       } catch (InputException ms) {
+        System.out.println(ms.getMessage());
+       }
+        inputValue.close();
+    }
 }
-
  
